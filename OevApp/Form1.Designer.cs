@@ -32,24 +32,22 @@
             this.tabAkutelleVerbindungen = new System.Windows.Forms.TabPage();
             this.grpEingabe = new System.Windows.Forms.GroupBox();
             this.btnGo = new System.Windows.Forms.Button();
-            this.btnSucheStation = new System.Windows.Forms.Button();
             this.cmbEndstation = new System.Windows.Forms.ComboBox();
             this.cmbStartstation = new System.Windows.Forms.ComboBox();
             this.lblZielstation = new System.Windows.Forms.Label();
             this.lblStartstation = new System.Windows.Forms.Label();
             this.grpAbfahrten = new System.Windows.Forms.GroupBox();
             this.lstAbfahrten = new System.Windows.Forms.ListView();
+            this.colPlattform = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAbfahrt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAnkunft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colDauer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabAbfahrtsmonitor = new System.Windows.Forms.TabPage();
+            this.btnGoMonitor = new System.Windows.Forms.Button();
             this.grpEingabeMonitor = new System.Windows.Forms.GroupBox();
             this.cmbStartMonitor = new System.Windows.Forms.ComboBox();
             this.lblStartMonitor = new System.Windows.Forms.Label();
             this.grpAbfahrtenMonitor = new System.Windows.Forms.GroupBox();
-            this.colPlattform = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnSucheMonitor = new System.Windows.Forms.Button();
-            this.btnGoMonitor = new System.Windows.Forms.Button();
             this.lstAbfahrtenMonitor = new System.Windows.Forms.ListView();
             this.colBusnummer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAbfahrtszeit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -76,6 +74,7 @@
             this.tabInhaltsteuerung.SelectedIndex = 0;
             this.tabInhaltsteuerung.Size = new System.Drawing.Size(460, 437);
             this.tabInhaltsteuerung.TabIndex = 0;
+            this.tabInhaltsteuerung.SelectedIndexChanged += new System.EventHandler(this.tabInhaltsteuerung_SelectedIndexChanged);
             // 
             // tabAkutelleVerbindungen
             // 
@@ -94,7 +93,6 @@
             this.grpEingabe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpEingabe.Controls.Add(this.btnGo);
-            this.grpEingabe.Controls.Add(this.btnSucheStation);
             this.grpEingabe.Controls.Add(this.cmbEndstation);
             this.grpEingabe.Controls.Add(this.cmbStartstation);
             this.grpEingabe.Controls.Add(this.lblZielstation);
@@ -118,17 +116,6 @@
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
-            // btnSucheStation
-            // 
-            this.btnSucheStation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSucheStation.Location = new System.Drawing.Point(374, 30);
-            this.btnSucheStation.Name = "btnSucheStation";
-            this.btnSucheStation.Size = new System.Drawing.Size(64, 48);
-            this.btnSucheStation.TabIndex = 2;
-            this.btnSucheStation.Text = "Suche Stationen";
-            this.btnSucheStation.UseVisualStyleBackColor = true;
-            this.btnSucheStation.Click += new System.EventHandler(this.btnSucheStation_Click);
-            // 
             // cmbEndstation
             // 
             this.cmbEndstation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -137,8 +124,9 @@
             this.cmbEndstation.FormattingEnabled = true;
             this.cmbEndstation.Location = new System.Drawing.Point(85, 57);
             this.cmbEndstation.Name = "cmbEndstation";
-            this.cmbEndstation.Size = new System.Drawing.Size(283, 21);
+            this.cmbEndstation.Size = new System.Drawing.Size(353, 21);
             this.cmbEndstation.TabIndex = 1;
+            this.cmbEndstation.DropDown += new System.EventHandler(this.cmbEndstation_DropDown);
             // 
             // cmbStartstation
             // 
@@ -148,8 +136,9 @@
             this.cmbStartstation.FormattingEnabled = true;
             this.cmbStartstation.Location = new System.Drawing.Point(85, 30);
             this.cmbStartstation.Name = "cmbStartstation";
-            this.cmbStartstation.Size = new System.Drawing.Size(283, 21);
+            this.cmbStartstation.Size = new System.Drawing.Size(353, 21);
             this.cmbStartstation.TabIndex = 0;
+            this.cmbStartstation.DropDown += new System.EventHandler(this.cmbStartstation_DropDown);
             // 
             // lblZielstation
             // 
@@ -205,6 +194,11 @@
             this.lstAbfahrten.UseCompatibleStateImageBehavior = false;
             this.lstAbfahrten.View = System.Windows.Forms.View.Details;
             // 
+            // colPlattform
+            // 
+            this.colPlattform.Text = "Plattform";
+            this.colPlattform.Width = 53;
+            // 
             // colAbfahrt
             // 
             this.colAbfahrt.Text = "Abfahrt";
@@ -233,11 +227,21 @@
             this.tabAbfahrtsmonitor.Text = "Abfahrtsmonitor";
             this.tabAbfahrtsmonitor.UseVisualStyleBackColor = true;
             // 
+            // btnGoMonitor
+            // 
+            this.btnGoMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGoMonitor.Location = new System.Drawing.Point(378, 95);
+            this.btnGoMonitor.Name = "btnGoMonitor";
+            this.btnGoMonitor.Size = new System.Drawing.Size(64, 23);
+            this.btnGoMonitor.TabIndex = 3;
+            this.btnGoMonitor.Text = "GO";
+            this.btnGoMonitor.UseVisualStyleBackColor = true;
+            this.btnGoMonitor.Click += new System.EventHandler(this.btnGoMonitor_Click);
+            // 
             // grpEingabeMonitor
             // 
             this.grpEingabeMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpEingabeMonitor.Controls.Add(this.btnSucheMonitor);
             this.grpEingabeMonitor.Controls.Add(this.cmbStartMonitor);
             this.grpEingabeMonitor.Controls.Add(this.lblStartMonitor);
             this.grpEingabeMonitor.Location = new System.Drawing.Point(4, 11);
@@ -255,8 +259,9 @@
             this.cmbStartMonitor.FormattingEnabled = true;
             this.cmbStartMonitor.Location = new System.Drawing.Point(85, 30);
             this.cmbStartMonitor.Name = "cmbStartMonitor";
-            this.cmbStartMonitor.Size = new System.Drawing.Size(283, 21);
+            this.cmbStartMonitor.Size = new System.Drawing.Size(353, 21);
             this.cmbStartMonitor.TabIndex = 0;
+            this.cmbStartMonitor.DropDown += new System.EventHandler(this.cmbStartMonitor_DropDown);
             // 
             // lblStartMonitor
             // 
@@ -279,33 +284,6 @@
             this.grpAbfahrtenMonitor.TabIndex = 3;
             this.grpAbfahrtenMonitor.TabStop = false;
             this.grpAbfahrtenMonitor.Text = "Abfahrten";
-            // 
-            // colPlattform
-            // 
-            this.colPlattform.Text = "Plattform";
-            this.colPlattform.Width = 53;
-            // 
-            // btnSucheMonitor
-            // 
-            this.btnSucheMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSucheMonitor.Location = new System.Drawing.Point(374, 30);
-            this.btnSucheMonitor.Name = "btnSucheMonitor";
-            this.btnSucheMonitor.Size = new System.Drawing.Size(64, 48);
-            this.btnSucheMonitor.TabIndex = 3;
-            this.btnSucheMonitor.Text = "Suche Stationen";
-            this.btnSucheMonitor.UseVisualStyleBackColor = true;
-            this.btnSucheMonitor.Click += new System.EventHandler(this.btnSucheMonitor_Click);
-            // 
-            // btnGoMonitor
-            // 
-            this.btnGoMonitor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGoMonitor.Location = new System.Drawing.Point(378, 95);
-            this.btnGoMonitor.Name = "btnGoMonitor";
-            this.btnGoMonitor.Size = new System.Drawing.Size(64, 23);
-            this.btnGoMonitor.TabIndex = 3;
-            this.btnGoMonitor.Text = "GO";
-            this.btnGoMonitor.UseVisualStyleBackColor = true;
-            this.btnGoMonitor.Click += new System.EventHandler(this.btnGoMonitor_Click);
             // 
             // lstAbfahrtenMonitor
             // 
@@ -340,7 +318,7 @@
             // 
             // frmOevApp
             // 
-            this.AcceptButton = this.btnSucheStation;
+            this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -378,14 +356,12 @@
         private System.Windows.Forms.ComboBox cmbStartMonitor;
         private System.Windows.Forms.Label lblStartMonitor;
         private System.Windows.Forms.GroupBox grpAbfahrtenMonitor;
-        private System.Windows.Forms.Button btnSucheStation;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.ListView lstAbfahrten;
         private System.Windows.Forms.ColumnHeader colAbfahrt;
         private System.Windows.Forms.ColumnHeader colAnkunft;
         private System.Windows.Forms.ColumnHeader colDauer;
         private System.Windows.Forms.ColumnHeader colPlattform;
-        private System.Windows.Forms.Button btnSucheMonitor;
         private System.Windows.Forms.Button btnGoMonitor;
         private System.Windows.Forms.ListView lstAbfahrtenMonitor;
         private System.Windows.Forms.ColumnHeader colBusnummer;

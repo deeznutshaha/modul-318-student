@@ -32,13 +32,6 @@ namespace OevApp
             }
         }
 
-        private void btnSucheStation_Click(object sender, EventArgs e)
-        {
-            FuelleDropdownMitStationen(cmbStartstation);
-            FuelleDropdownMitStationen(cmbEndstation);
-            this.AcceptButton = btnGo;
-        }
-
         private void btnGo_Click(object sender, EventArgs e)
         {
             try
@@ -105,6 +98,26 @@ namespace OevApp
             {
                 MessageBox.Show("Sie haben zu viele Serveranfragen auf einmal gestellt.\nBitte versuchen Sie es erneut!\n\n" + fehlermeldung.Message, "Zu viele Anfragen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void cmbStartstation_DropDown(object sender, EventArgs e)
+        {
+            FuelleDropdownMitStationen(cmbStartstation);
+        }
+
+        private void cmbEndstation_DropDown(object sender, EventArgs e)
+        {
+            FuelleDropdownMitStationen(cmbEndstation);
+        }
+
+        private void cmbStartMonitor_DropDown(object sender, EventArgs e)
+        {
+            FuelleDropdownMitStationen(cmbStartMonitor);
+        }
+
+        private void tabInhaltsteuerung_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tab = ((TabControl)sender).Name;
         }
     }
 }
