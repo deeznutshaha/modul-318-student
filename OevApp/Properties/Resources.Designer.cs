@@ -63,9 +63,9 @@ namespace OevApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic_swap_vert_black_24dp_1x {
+        internal static System.Drawing.Bitmap ic_search_black_24dp_1x {
             get {
-                object obj = ResourceManager.GetObject("ic_swap_vert_black_24dp_1x", resourceCulture);
+                object obj = ResourceManager.GetObject("ic_search_black_24dp_1x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace OevApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic_swap_vert_black_24dp_2x {
+        internal static System.Drawing.Bitmap ic_swap_vert_black_24dp_1x {
             get {
-                object obj = ResourceManager.GetObject("ic_swap_vert_black_24dp_2x", resourceCulture);
+                object obj = ResourceManager.GetObject("ic_swap_vert_black_24dp_1x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

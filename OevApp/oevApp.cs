@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using SwissTransport;
 using System.Net;
+using System.Diagnostics;
 
 namespace OevApp
 {
@@ -11,6 +12,8 @@ namespace OevApp
         public frmOevApp()
         {
             InitializeComponent();
+            numStunden.Value = Convert.ToDecimal(DateTime.Now.ToString("HH"));
+            numMinuten.Value = Convert.ToDecimal(DateTime.Now.ToString("mm"));
         }
 
         private void FuelleDropdownMitStationen(ComboBox zuFuellendeCmb)
@@ -39,26 +42,28 @@ namespace OevApp
                 lstAbfahrten.Items.Clear();
                 if (String.IsNullOrEmpty(cmbStartstation.Text) || String.IsNullOrEmpty(cmbEndstation.Text))
                     return;
-                var verbindungsListe = m_transport.GetConnections(cmbStartstation.Text, cmbEndstation.Text).ConnectionList;
+                string suchDatum = datZeitauswahl.Value.ToString("yyyy-MM-dd");
+                string suchZeit = numStunden.Value + ":" + numMinuten.Value;
+                var verbindungsListe = m_transport.GetConnections(cmbStartstation.Text, cmbEndstation.Text, suchDatum, suchZeit).ConnectionList;
                 int maximaleResultate = 5;
                 if (verbindungsListe.Count < maximaleResultate)
                     maximaleResultate = verbindungsListe.Count;
                 for (int verbindunsZaehler = 0; verbindunsZaehler < maximaleResultate; verbindunsZaehler++)
                 {
                     var verbindungsObjekt = verbindungsListe[verbindunsZaehler];
-                    if(verbindunsZaehler == 0)
+                    if (verbindunsZaehler == 0)
                     {
                         cmbStartstation.Text = verbindungsObjekt.From.Station.Name;
                         cmbEndstation.Text = verbindungsObjekt.To.Station.Name;
-                    }   
+                    }
 
                     DateTime abfahrtsZeit = DateTime.Parse(verbindungsObjekt.From.Departure);
                     DateTime ankunftsZeit = DateTime.Parse(verbindungsObjekt.To.Arrival);
 
-                    String[] darzustellendeInfos = {abfahrtsZeit.ToString("HH:mm"), verbindungsObjekt.From.Station.Name, ankunftsZeit.ToString("HH:mm"), verbindungsObjekt.To.Station.Name, (ankunftsZeit-abfahrtsZeit).ToString()};
+                    String[] darzustellendeInfos = { abfahrtsZeit.ToString("HH:mm"), verbindungsObjekt.From.Station.Name, ankunftsZeit.ToString("HH:mm"), verbindungsObjekt.To.Station.Name, (ankunftsZeit - abfahrtsZeit).ToString() };
                     lstAbfahrten.Items.Add(new ListViewItem(darzustellendeInfos));
                 }
-                
+
                 if (lstAbfahrten.Items.Count == 0)
                     lstAbfahrten.Items.Add("Keine Verbindung gefunden!");
                 lstAbfahrten.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -92,7 +97,7 @@ namespace OevApp
                 for (int verbindungsZaehler = 0; verbindungsZaehler < maximaleResultate; verbindungsZaehler++)
                 {
                     var verbindungsElement = verbindungsResultate[verbindungsZaehler];
-                    String[] darzustellendeInfos = { verbindungsElement.Name, verbindungsElement.Stop.Departure.ToString("HH:mm"), verbindungsElement.To,   };
+                    String[] darzustellendeInfos = { verbindungsElement.Name, verbindungsElement.Stop.Departure.ToString("HH:mm"), verbindungsElement.To, };
                     lstAbfahrtenMonitor.Items.Add(new ListViewItem(darzustellendeInfos));
                 }
                 if (lstAbfahrtenMonitor.Items.Count == 0)
@@ -134,6 +139,26 @@ namespace OevApp
             string werteZwischenspeicher = cmbStartstation.Text;
             cmbStartstation.Text = cmbEndstation.Text;
             cmbEndstation.Text = werteZwischenspeicher;
+        }
+
+        private void lblStartstation_Click(object sender, EventArgs e)
+        {
+            ZeigeStationenposition(cmbStartstation);
+        }
+
+        private void lblZielstation_Click(object sender, EventArgs e)
+        {
+            ZeigeStationenposition(cmbEndstation);
+        }
+
+        private void ZeigeStationenposition(ComboBox positionsQuelle)
+        {
+            if (!String.IsNullOrEmpty(positionsQuelle.Text))
+            {
+                var aktuelleLocation = m_transport.GetStations(positionsQuelle.Text).StationList[0].Coordinate;
+                string googleUrl = "https://www.google.ch/maps/?q=loc:" + aktuelleLocation.XCoordinate + "+" + aktuelleLocation.YCoordinate;
+                Process.Start(googleUrl);
+            }
         }
     }
 }

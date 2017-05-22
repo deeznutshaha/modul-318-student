@@ -86,10 +86,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\ic_swap_vert_black_24dp_2x.png" />
+    <None Include="icons\ic_swap_vert_black_24dp_1x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\ic_swap_vert_black_24dp_1x.png" />
+    <None Include="icons\ic_search_black_24dp_1x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
