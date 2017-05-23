@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="oevApp.cs">
+    <Compile Include="OevApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="oevApp.Designer.cs">
-      <DependentUpon>oevApp.cs</DependentUpon>
+    <Compile Include="OevApp.Designer.cs">
+      <DependentUpon>OevApp.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="oevApp.resx">
-      <DependentUpon>oevApp.cs</DependentUpon>
+    <EmbeddedResource Include="OevApp.resx">
+      <DependentUpon>OevApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,8 +92,8 @@
     <None Include="icons\ic_search_black_24dp_1x.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icons\ic_directions_bus_black_24dp_1x.ico" />
     <Content Include="icons\ic_location_searching_black_24dp_1x.png" />
-    <Content Include="icons\ic_mail_black_24dp_1x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

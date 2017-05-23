@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOevApp));
             this.tabInhaltssteuerelement = new System.Windows.Forms.TabControl();
             this.tabAkutelleVerbindungen = new System.Windows.Forms.TabPage();
             this.grpVerbindungseingabe = new System.Windows.Forms.GroupBox();
@@ -576,6 +577,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.tabInhaltssteuerelement);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(500, 500);
             this.Name = "frmOevApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
