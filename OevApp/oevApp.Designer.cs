@@ -34,9 +34,6 @@
             this.tabAkutelleVerbindungen = new System.Windows.Forms.TabPage();
             this.grpVerbindungseingabe = new System.Windows.Forms.GroupBox();
             this.lblUhr = new System.Windows.Forms.Label();
-            this.lblTrennzeichen = new System.Windows.Forms.Label();
-            this.numMinuten = new System.Windows.Forms.NumericUpDown();
-            this.numStunden = new System.Windows.Forms.NumericUpDown();
             this.datZeitauswahl = new System.Windows.Forms.DateTimePicker();
             this.lblDatumZeit = new System.Windows.Forms.Label();
             this.btnWechseln = new System.Windows.Forms.Button();
@@ -72,11 +69,10 @@
             this.txtStationInDerNaehe = new System.Windows.Forms.TextBox();
             this.lblSuchstation = new System.Windows.Forms.Label();
             this.ttpStandort = new System.Windows.Forms.ToolTip(this.components);
+            this.datUhrzeit = new System.Windows.Forms.DateTimePicker();
             this.tabInhaltssteuerelement.SuspendLayout();
             this.tabAkutelleVerbindungen.SuspendLayout();
             this.grpVerbindungseingabe.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMinuten)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStunden)).BeginInit();
             this.grpVerbindungsabfahrten.SuspendLayout();
             this.tabAbfahrtsmonitor.SuspendLayout();
             this.grpMonitoreingabe.SuspendLayout();
@@ -118,10 +114,8 @@
             // 
             this.grpVerbindungseingabe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpVerbindungseingabe.Controls.Add(this.datUhrzeit);
             this.grpVerbindungseingabe.Controls.Add(this.lblUhr);
-            this.grpVerbindungseingabe.Controls.Add(this.lblTrennzeichen);
-            this.grpVerbindungseingabe.Controls.Add(this.numMinuten);
-            this.grpVerbindungseingabe.Controls.Add(this.numStunden);
             this.grpVerbindungseingabe.Controls.Add(this.datZeitauswahl);
             this.grpVerbindungseingabe.Controls.Add(this.lblDatumZeit);
             this.grpVerbindungseingabe.Controls.Add(this.btnWechseln);
@@ -143,50 +137,11 @@
             this.lblUhr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUhr.AutoSize = true;
-            this.lblUhr.Location = new System.Drawing.Point(375, 88);
+            this.lblUhr.Location = new System.Drawing.Point(342, 86);
             this.lblUhr.Name = "lblUhr";
             this.lblUhr.Size = new System.Drawing.Size(24, 13);
             this.lblUhr.TabIndex = 9;
             this.lblUhr.Text = "Uhr";
-            // 
-            // lblTrennzeichen
-            // 
-            this.lblTrennzeichen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTrennzeichen.AutoSize = true;
-            this.lblTrennzeichen.Location = new System.Drawing.Point(309, 88);
-            this.lblTrennzeichen.Name = "lblTrennzeichen";
-            this.lblTrennzeichen.Size = new System.Drawing.Size(10, 13);
-            this.lblTrennzeichen.TabIndex = 8;
-            this.lblTrennzeichen.Text = ":";
-            // 
-            // numMinuten
-            // 
-            this.numMinuten.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numMinuten.Location = new System.Drawing.Point(325, 84);
-            this.numMinuten.Maximum = new decimal(new int[] {
-            59,
-            0,
-            0,
-            0});
-            this.numMinuten.Name = "numMinuten";
-            this.numMinuten.Size = new System.Drawing.Size(44, 20);
-            this.numMinuten.TabIndex = 5;
-            // 
-            // numStunden
-            // 
-            this.numStunden.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numStunden.Location = new System.Drawing.Point(262, 84);
-            this.numStunden.Maximum = new decimal(new int[] {
-            23,
-            0,
-            0,
-            0});
-            this.numStunden.Name = "numStunden";
-            this.numStunden.Size = new System.Drawing.Size(44, 20);
-            this.numStunden.TabIndex = 4;
             // 
             // datZeitauswahl
             // 
@@ -239,7 +194,7 @@
             this.btnGo.Location = new System.Drawing.Point(411, 76);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(31, 37);
-            this.btnGo.TabIndex = 6;
+            this.btnGo.TabIndex = 5;
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
@@ -323,7 +278,7 @@
             this.lstAbfahrten.Location = new System.Drawing.Point(9, 19);
             this.lstAbfahrten.Name = "lstAbfahrten";
             this.lstAbfahrten.Size = new System.Drawing.Size(429, 239);
-            this.lstAbfahrten.TabIndex = 7;
+            this.lstAbfahrten.TabIndex = 6;
             this.lstAbfahrten.UseCompatibleStateImageBehavior = false;
             this.lstAbfahrten.View = System.Windows.Forms.View.Details;
             // 
@@ -509,7 +464,7 @@
             // colDistanz
             // 
             this.colDistanz.Text = "Distanz";
-            this.colDistanz.Width = 356;
+            this.colDistanz.Width = 342;
             // 
             // grpEingabeInNaehe
             // 
@@ -568,6 +523,18 @@
             // 
             this.ttpStandort.ToolTipTitle = "Zeige Standort";
             // 
+            // datUhrzeit
+            // 
+            this.datUhrzeit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.datUhrzeit.CustomFormat = "HH:mm";
+            this.datUhrzeit.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.datUhrzeit.Location = new System.Drawing.Point(274, 84);
+            this.datUhrzeit.Name = "datUhrzeit";
+            this.datUhrzeit.ShowUpDown = true;
+            this.datUhrzeit.Size = new System.Drawing.Size(62, 20);
+            this.datUhrzeit.TabIndex = 4;
+            // 
             // frmOevApp
             // 
             this.AcceptButton = this.btnGo;
@@ -582,12 +549,11 @@
             this.Name = "frmOevApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "öV App";
+            this.Load += new System.EventHandler(this.frmOevApp_Load);
             this.tabInhaltssteuerelement.ResumeLayout(false);
             this.tabAkutelleVerbindungen.ResumeLayout(false);
             this.grpVerbindungseingabe.ResumeLayout(false);
             this.grpVerbindungseingabe.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numMinuten)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStunden)).EndInit();
             this.grpVerbindungsabfahrten.ResumeLayout(false);
             this.tabAbfahrtsmonitor.ResumeLayout(false);
             this.grpMonitoreingabe.ResumeLayout(false);
@@ -632,9 +598,6 @@
         private System.Windows.Forms.ToolTip ttpStandort;
         private System.Windows.Forms.Label lblDatumZeit;
         private System.Windows.Forms.DateTimePicker datZeitauswahl;
-        private System.Windows.Forms.NumericUpDown numMinuten;
-        private System.Windows.Forms.NumericUpDown numStunden;
-        private System.Windows.Forms.Label lblTrennzeichen;
         private System.Windows.Forms.Label lblUhr;
         private System.Windows.Forms.TabPage tabStationenInDerNaehe;
         private System.Windows.Forms.ListView lstNaheStationen;
@@ -645,6 +608,7 @@
         private System.Windows.Forms.GroupBox grpEingabeInNaehe;
         private System.Windows.Forms.Label lblSuchstation;
         private System.Windows.Forms.GroupBox grpStationInDerNaehe;
+        private System.Windows.Forms.DateTimePicker datUhrzeit;
     }
 }
 
