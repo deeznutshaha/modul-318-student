@@ -12,6 +12,7 @@ namespace OevApp
         public frmOevApp()
         {
             InitializeComponent();
+            cmbStartstation.Select();
             numStunden.Value = Convert.ToDecimal(DateTime.Now.ToString("HH"));
             numMinuten.Value = Convert.ToDecimal(DateTime.Now.ToString("mm"));            
         }
@@ -129,11 +130,20 @@ namespace OevApp
         {
             var angewaehlterTabIndex = ((TabControl)sender).SelectedIndex;
             if (angewaehlterTabIndex == 0)
+            {
                 this.AcceptButton = btnGo;
+                cmbStartstation.Select();
+            }
             else if (angewaehlterTabIndex == 1)
+            {
                 this.AcceptButton = btnGoMonitor;
+                cmbStartMonitor.Select();
+            }
             else if (angewaehlterTabIndex == 2)
+            {
                 this.AcceptButton = btnNaheStationen;
+                txtStationInDerNaehe.Select();
+            }
         }
 
         private void btnWechseln_Click(object sender, EventArgs e)
