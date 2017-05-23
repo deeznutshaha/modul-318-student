@@ -1,6 +1,9 @@
-# modul-318-Student
+# öV App
 
-Students!
-Fork this repository to your own Github account. Work there with this repository. The intructor will clone your repo for inspection and evaluation.
+Dies ist die öV App von Mauro Küpfer.
 
-Have Fun!
+Links:
+
+[Dokumentation] (docs\Dokumentation.docx)
+
+[Setup] (OevAppSetup_v1.1.0.msi)
