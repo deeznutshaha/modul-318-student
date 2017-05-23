@@ -91,5 +91,9 @@
   <ItemGroup>
     <None Include="icons\ic_search_black_24dp_1x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\ic_location_searching_black_24dp_1x.png" />
+    <Content Include="icons\ic_mail_black_24dp_1x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

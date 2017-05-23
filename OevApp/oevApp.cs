@@ -13,7 +13,7 @@ namespace OevApp
         {
             InitializeComponent();
             numStunden.Value = Convert.ToDecimal(DateTime.Now.ToString("HH"));
-            numMinuten.Value = Convert.ToDecimal(DateTime.Now.ToString("mm"));
+            numMinuten.Value = Convert.ToDecimal(DateTime.Now.ToString("mm"));            
         }
 
         private void FuelleDropdownMitStationen(ComboBox zuFuellendeCmb)
@@ -130,8 +130,10 @@ namespace OevApp
             var angewaehlterTabIndex = ((TabControl)sender).SelectedIndex;
             if (angewaehlterTabIndex == 0)
                 this.AcceptButton = btnGo;
-            else
+            else if (angewaehlterTabIndex == 1)
                 this.AcceptButton = btnGoMonitor;
+            else if (angewaehlterTabIndex == 2)
+                this.AcceptButton = btnNaheStationen;
         }
 
         private void btnWechseln_Click(object sender, EventArgs e)
@@ -143,21 +145,52 @@ namespace OevApp
 
         private void lblStartstation_Click(object sender, EventArgs e)
         {
-            ZeigeStationenposition(cmbStartstation);
+            ZeigeStationenposition(cmbStartstation.Text);
         }
 
         private void lblZielstation_Click(object sender, EventArgs e)
         {
-            ZeigeStationenposition(cmbEndstation);
+            ZeigeStationenposition(cmbEndstation.Text);
         }
 
-        private void ZeigeStationenposition(ComboBox positionsQuelle)
+        private void ZeigeStationenposition(string suchtext)
         {
-            if (!String.IsNullOrEmpty(positionsQuelle.Text))
+            try
             {
-                var aktuelleLocation = m_transport.GetStations(positionsQuelle.Text).StationList[0].Coordinate;
-                string googleUrl = "https://www.google.ch/maps/?q=loc:" + aktuelleLocation.XCoordinate + "+" + aktuelleLocation.YCoordinate;
-                Process.Start(googleUrl);
+                if (!String.IsNullOrEmpty(suchtext))
+                {
+                    var aktuelleLocation = m_transport.GetStations(suchtext).StationList[0].Coordinate;
+                    //Searchquery zusammenstellen, zusätzlich Kommas ersetzen, da der Double dies je nach Kulturinfo beinhaltet und GoogleMaps dies so nicht findet
+                    string googleUrl = "https://www.google.ch/maps/?q=loc:" + aktuelleLocation.XCoordinate.ToString().Replace(",", ".") + "+" + aktuelleLocation.YCoordinate.ToString().Replace(",", ".");
+                    Process.Start(googleUrl);
+                }
+            }
+            catch (WebException fehlerObjekt)
+            {
+                MessageBox.Show("Sie haben zu viele Serveranfragen auf einmal gestellt.\nBitte versuchen Sie es erneut!\n\n" + fehlerObjekt.Message, "Zu viele Anfragen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnNaheStationen_Click(object sender, EventArgs e)
+        {
+            lstNaheStationen.Items.Clear();
+            var startStation = m_transport.GetStations(txtStationInDerNaehe.Text).StationList[0];
+            var stationenInDerNaehe = m_transport.GetStations(startStation.Coordinate.XCoordinate, startStation.Coordinate.YCoordinate).StationList;
+
+            for(int stationenZaehler = 1; stationenZaehler < stationenInDerNaehe.Count; stationenZaehler++)
+            {
+                var stationenElement = stationenInDerNaehe[stationenZaehler];
+                String[] darzustellendeInfos = {stationenElement.Name, stationenElement.Distance.ToString() + " m"};
+                lstNaheStationen.Items.Add(new ListViewItem(darzustellendeInfos));
+            }
+            lstNaheStationen.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void lstNaheStationen_Click(object sender, EventArgs e)
+        {
+            if(lstNaheStationen.SelectedItems != null)
+            {
+                ZeigeStationenposition(lstNaheStationen.SelectedItems[0].Text);
             }
         }
     }

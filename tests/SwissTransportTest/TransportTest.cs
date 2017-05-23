@@ -17,6 +17,14 @@ namespace SwissTransport
         }
 
         [TestMethod]
+        public void LocationsWithCoordinates()
+        {
+            testee = new Transport();
+            var stations = testee.GetStations(47.0715826, 8.3470905);
+            Assert.AreEqual("Adligenswil, Stuben", stations.StationList[0].Name);
+        }
+
+        [TestMethod]
         public void StationBoard()
         {
             testee = new Transport();

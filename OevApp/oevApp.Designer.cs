@@ -32,6 +32,7 @@
             this.tabInhaltssteuerelement = new System.Windows.Forms.TabControl();
             this.tabAkutelleVerbindungen = new System.Windows.Forms.TabPage();
             this.grpVerbindungseingabe = new System.Windows.Forms.GroupBox();
+            this.lblUhr = new System.Windows.Forms.Label();
             this.lblTrennzeichen = new System.Windows.Forms.Label();
             this.numMinuten = new System.Windows.Forms.NumericUpDown();
             this.numStunden = new System.Windows.Forms.NumericUpDown();
@@ -60,8 +61,16 @@
             this.colBezeichnung = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAbfahrtszeit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colZielort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabStationenInDerNaehe = new System.Windows.Forms.TabPage();
+            this.grpStationInDerNaehe = new System.Windows.Forms.GroupBox();
+            this.lstNaheStationen = new System.Windows.Forms.ListView();
+            this.colStationenname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDistanz = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.grpEingabeInNaehe = new System.Windows.Forms.GroupBox();
+            this.btnNaheStationen = new System.Windows.Forms.Button();
+            this.txtStationInDerNaehe = new System.Windows.Forms.TextBox();
+            this.lblSuchstation = new System.Windows.Forms.Label();
             this.ttpStandort = new System.Windows.Forms.ToolTip(this.components);
-            this.lblUhr = new System.Windows.Forms.Label();
             this.tabInhaltssteuerelement.SuspendLayout();
             this.tabAkutelleVerbindungen.SuspendLayout();
             this.grpVerbindungseingabe.SuspendLayout();
@@ -71,6 +80,9 @@
             this.tabAbfahrtsmonitor.SuspendLayout();
             this.grpMonitoreingabe.SuspendLayout();
             this.grpMonitorabfahrten.SuspendLayout();
+            this.tabStationenInDerNaehe.SuspendLayout();
+            this.grpStationInDerNaehe.SuspendLayout();
+            this.grpEingabeInNaehe.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabInhaltssteuerelement
@@ -80,6 +92,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabInhaltssteuerelement.Controls.Add(this.tabAkutelleVerbindungen);
             this.tabInhaltssteuerelement.Controls.Add(this.tabAbfahrtsmonitor);
+            this.tabInhaltssteuerelement.Controls.Add(this.tabStationenInDerNaehe);
             this.tabInhaltssteuerelement.Location = new System.Drawing.Point(12, 12);
             this.tabInhaltssteuerelement.Multiline = true;
             this.tabInhaltssteuerelement.Name = "tabInhaltssteuerelement";
@@ -124,8 +137,21 @@
             this.grpVerbindungseingabe.TabStop = false;
             this.grpVerbindungseingabe.Text = "Eingabe";
             // 
+            // lblUhr
+            // 
+            this.lblUhr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUhr.AutoSize = true;
+            this.lblUhr.Location = new System.Drawing.Point(375, 88);
+            this.lblUhr.Name = "lblUhr";
+            this.lblUhr.Size = new System.Drawing.Size(24, 13);
+            this.lblUhr.TabIndex = 9;
+            this.lblUhr.Text = "Uhr";
+            // 
             // lblTrennzeichen
             // 
+            this.lblTrennzeichen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTrennzeichen.AutoSize = true;
             this.lblTrennzeichen.Location = new System.Drawing.Point(309, 88);
             this.lblTrennzeichen.Name = "lblTrennzeichen";
@@ -135,6 +161,8 @@
             // 
             // numMinuten
             // 
+            this.numMinuten.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numMinuten.Location = new System.Drawing.Point(325, 84);
             this.numMinuten.Maximum = new decimal(new int[] {
             59,
@@ -143,10 +171,12 @@
             0});
             this.numMinuten.Name = "numMinuten";
             this.numMinuten.Size = new System.Drawing.Size(44, 20);
-            this.numMinuten.TabIndex = 7;
+            this.numMinuten.TabIndex = 5;
             // 
             // numStunden
             // 
+            this.numStunden.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.numStunden.Location = new System.Drawing.Point(262, 84);
             this.numStunden.Maximum = new decimal(new int[] {
             23,
@@ -155,17 +185,20 @@
             0});
             this.numStunden.Name = "numStunden";
             this.numStunden.Size = new System.Drawing.Size(44, 20);
-            this.numStunden.TabIndex = 6;
+            this.numStunden.TabIndex = 4;
             // 
             // datZeitauswahl
             // 
+            this.datZeitauswahl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.datZeitauswahl.CalendarMonthBackground = System.Drawing.Color.White;
             this.datZeitauswahl.CustomFormat = "dd. MMMM yyyy";
             this.datZeitauswahl.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.datZeitauswahl.Location = new System.Drawing.Point(85, 84);
             this.datZeitauswahl.Name = "datZeitauswahl";
             this.datZeitauswahl.Size = new System.Drawing.Size(145, 20);
-            this.datZeitauswahl.TabIndex = 5;
+            this.datZeitauswahl.TabIndex = 3;
             this.datZeitauswahl.Value = new System.DateTime(2017, 5, 22, 13, 13, 21, 160);
             // 
             // lblDatumZeit
@@ -179,6 +212,7 @@
             // 
             // btnWechseln
             // 
+            this.btnWechseln.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnWechseln.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnWechseln.FlatAppearance.BorderSize = 0;
             this.btnWechseln.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
@@ -204,7 +238,7 @@
             this.btnGo.Location = new System.Drawing.Point(411, 76);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(31, 37);
-            this.btnGo.TabIndex = 3;
+            this.btnGo.TabIndex = 6;
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
@@ -288,7 +322,7 @@
             this.lstAbfahrten.Location = new System.Drawing.Point(9, 19);
             this.lstAbfahrten.Name = "lstAbfahrten";
             this.lstAbfahrten.Size = new System.Drawing.Size(429, 239);
-            this.lstAbfahrten.TabIndex = 0;
+            this.lstAbfahrten.TabIndex = 7;
             this.lstAbfahrten.UseCompatibleStateImageBehavior = false;
             this.lstAbfahrten.View = System.Windows.Forms.View.Details;
             // 
@@ -424,18 +458,114 @@
             this.colZielort.Text = "Zielort";
             this.colZielort.Width = 284;
             // 
+            // tabStationenInDerNaehe
+            // 
+            this.tabStationenInDerNaehe.Controls.Add(this.grpStationInDerNaehe);
+            this.tabStationenInDerNaehe.Controls.Add(this.grpEingabeInNaehe);
+            this.tabStationenInDerNaehe.Location = new System.Drawing.Point(4, 22);
+            this.tabStationenInDerNaehe.Name = "tabStationenInDerNaehe";
+            this.tabStationenInDerNaehe.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStationenInDerNaehe.Size = new System.Drawing.Size(452, 411);
+            this.tabStationenInDerNaehe.TabIndex = 2;
+            this.tabStationenInDerNaehe.Text = "In der Nähe";
+            this.tabStationenInDerNaehe.UseVisualStyleBackColor = true;
+            // 
+            // grpStationInDerNaehe
+            // 
+            this.grpStationInDerNaehe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpStationInDerNaehe.Controls.Add(this.lstNaheStationen);
+            this.grpStationInDerNaehe.Location = new System.Drawing.Point(4, 136);
+            this.grpStationInDerNaehe.Name = "grpStationInDerNaehe";
+            this.grpStationInDerNaehe.Size = new System.Drawing.Size(444, 264);
+            this.grpStationInDerNaehe.TabIndex = 4;
+            this.grpStationInDerNaehe.TabStop = false;
+            this.grpStationInDerNaehe.Text = "Stationen in der Nähe";
+            // 
+            // lstNaheStationen
+            // 
+            this.lstNaheStationen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstNaheStationen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colStationenname,
+            this.colDistanz});
+            this.lstNaheStationen.FullRowSelect = true;
+            this.lstNaheStationen.Location = new System.Drawing.Point(9, 19);
+            this.lstNaheStationen.Name = "lstNaheStationen";
+            this.lstNaheStationen.Size = new System.Drawing.Size(429, 239);
+            this.lstNaheStationen.TabIndex = 2;
+            this.lstNaheStationen.UseCompatibleStateImageBehavior = false;
+            this.lstNaheStationen.View = System.Windows.Forms.View.Details;
+            this.lstNaheStationen.Click += new System.EventHandler(this.lstNaheStationen_Click);
+            // 
+            // colStationenname
+            // 
+            this.colStationenname.Text = "Stationenname";
+            this.colStationenname.Width = 83;
+            // 
+            // colDistanz
+            // 
+            this.colDistanz.Text = "Distanz";
+            this.colDistanz.Width = 356;
+            // 
+            // grpEingabeInNaehe
+            // 
+            this.grpEingabeInNaehe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpEingabeInNaehe.Controls.Add(this.btnNaheStationen);
+            this.grpEingabeInNaehe.Controls.Add(this.txtStationInDerNaehe);
+            this.grpEingabeInNaehe.Controls.Add(this.lblSuchstation);
+            this.grpEingabeInNaehe.Location = new System.Drawing.Point(4, 11);
+            this.grpEingabeInNaehe.MinimumSize = new System.Drawing.Size(444, 119);
+            this.grpEingabeInNaehe.Name = "grpEingabeInNaehe";
+            this.grpEingabeInNaehe.Size = new System.Drawing.Size(444, 120);
+            this.grpEingabeInNaehe.TabIndex = 3;
+            this.grpEingabeInNaehe.TabStop = false;
+            this.grpEingabeInNaehe.Text = "Eingabe";
+            // 
+            // btnNaheStationen
+            // 
+            this.btnNaheStationen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNaheStationen.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNaheStationen.FlatAppearance.BorderSize = 0;
+            this.btnNaheStationen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnNaheStationen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnNaheStationen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNaheStationen.Image = global::OevApp.Properties.Resources.ic_location_searching_black_24dp_1x;
+            this.btnNaheStationen.Location = new System.Drawing.Point(411, 76);
+            this.btnNaheStationen.Name = "btnNaheStationen";
+            this.btnNaheStationen.Size = new System.Drawing.Size(31, 37);
+            this.btnNaheStationen.TabIndex = 1;
+            this.btnNaheStationen.UseVisualStyleBackColor = true;
+            this.btnNaheStationen.Click += new System.EventHandler(this.btnNaheStationen_Click);
+            // 
+            // txtStationInDerNaehe
+            // 
+            this.txtStationInDerNaehe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStationInDerNaehe.Location = new System.Drawing.Point(85, 30);
+            this.txtStationInDerNaehe.Name = "txtStationInDerNaehe";
+            this.txtStationInDerNaehe.Size = new System.Drawing.Size(324, 20);
+            this.txtStationInDerNaehe.TabIndex = 0;
+            // 
+            // lblSuchstation
+            // 
+            this.lblSuchstation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSuchstation.AutoSize = true;
+            this.lblSuchstation.Location = new System.Drawing.Point(6, 33);
+            this.lblSuchstation.Name = "lblSuchstation";
+            this.lblSuchstation.Size = new System.Drawing.Size(66, 13);
+            this.lblSuchstation.TabIndex = 0;
+            this.lblSuchstation.Text = "Suchstation:";
+            // 
             // ttpStandort
             // 
             this.ttpStandort.ToolTipTitle = "Zeige Standort";
-            // 
-            // lblUhr
-            // 
-            this.lblUhr.AutoSize = true;
-            this.lblUhr.Location = new System.Drawing.Point(375, 88);
-            this.lblUhr.Name = "lblUhr";
-            this.lblUhr.Size = new System.Drawing.Size(24, 13);
-            this.lblUhr.TabIndex = 9;
-            this.lblUhr.Text = "Uhr";
             // 
             // frmOevApp
             // 
@@ -461,6 +591,10 @@
             this.grpMonitoreingabe.ResumeLayout(false);
             this.grpMonitoreingabe.PerformLayout();
             this.grpMonitorabfahrten.ResumeLayout(false);
+            this.tabStationenInDerNaehe.ResumeLayout(false);
+            this.grpStationInDerNaehe.ResumeLayout(false);
+            this.grpEingabeInNaehe.ResumeLayout(false);
+            this.grpEingabeInNaehe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -500,6 +634,15 @@
         private System.Windows.Forms.NumericUpDown numStunden;
         private System.Windows.Forms.Label lblTrennzeichen;
         private System.Windows.Forms.Label lblUhr;
+        private System.Windows.Forms.TabPage tabStationenInDerNaehe;
+        private System.Windows.Forms.ListView lstNaheStationen;
+        private System.Windows.Forms.ColumnHeader colStationenname;
+        private System.Windows.Forms.ColumnHeader colDistanz;
+        private System.Windows.Forms.Button btnNaheStationen;
+        private System.Windows.Forms.TextBox txtStationInDerNaehe;
+        private System.Windows.Forms.GroupBox grpEingabeInNaehe;
+        private System.Windows.Forms.Label lblSuchstation;
+        private System.Windows.Forms.GroupBox grpStationInDerNaehe;
     }
 }
 
